@@ -48,7 +48,7 @@
 #pragma mark `defaultPlaceholderColor`
 
 + (UIColor *)defaultPlaceholderColor {
-    __block UIColor *color = nil;
+    static UIColor *color = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         UITextField *textField = [[UITextField alloc] init];
