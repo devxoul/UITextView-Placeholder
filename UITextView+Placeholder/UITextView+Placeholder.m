@@ -25,8 +25,24 @@
 #import <objc/runtime.h>
 #import "UITextView+Placeholder.h"
 
-@implementation UITextView (Placeholder)
+@interface DeallocHooker : NSObject
 
+@property (nonatomic, strong) void (^willDealloc)(void);
+
+@end
+
+@implementation DeallocHooker
+
+- (void)dealloc {
+    if (self.willDealloc) {
+        self.willDealloc();
+    }
+}
+
+@end
+
+
+@implementation UITextView (Placeholder)
 
 #pragma mark - Class Methods
 #pragma mark `defaultPlaceholderColor`
@@ -70,6 +86,15 @@
         for (NSString *key in observingKeys) {
             [self addObserver:self forKeyPath:key options:NSKeyValueObservingOptionNew context:nil];
         }
+
+        DeallocHooker *hooker = [[DeallocHooker alloc] init];
+        hooker.willDealloc = ^{
+            [[NSNotificationCenter defaultCenter] removeObserver:self];
+            for (NSString *key in observingKeys) {
+                [self removeObserver:self forKeyPath:key];
+            }
+        };
+        objc_setAssociatedObject(self, @"deallocHooker", hooker, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     return label;
 }
