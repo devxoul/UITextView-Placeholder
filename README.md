@@ -1,6 +1,8 @@
 UITextView+Placeholder
 ======================
 
+[![CocoaPods](http://img.shields.io/cocoapods/v/UITextView+Placeholder.svg?style=flat)](http://cocoapods.org/?q=name%3AUITextView%2BPlaceholder)
+
 A missing placeholder for UITextView.
 
 
