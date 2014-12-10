@@ -16,13 +16,18 @@ pod 'UITextView+Placeholder'
 ```
 
 
-Basic Usage
------------
+Usage
+-----
+
+Create `UITextView`, then set `placeholder`.
 
 ```objc
-self.textView.placeholder = @"How are you?";
-self.textView.placeholderColor = [UIColor lightGrayColor];
+UITextView *textView = [[UITextView alloc] init];
+textView.placeholder = @"How are you?";
+textView.placeholderColor = [UIColor lightGrayColor]; // optional
 ```
+
+Congratulations! You're done.
 
 
 License
