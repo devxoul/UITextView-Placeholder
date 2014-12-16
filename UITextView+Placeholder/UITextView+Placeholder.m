@@ -80,7 +80,9 @@
                                                    object:self];
 
         NSArray *observingKeys = @[@"attributedText",
+                                   @"bounds",
                                    @"font",
+                                   @"frame",
                                    @"text",
                                    @"textAlignment"];
         for (NSString *key in observingKeys) {
