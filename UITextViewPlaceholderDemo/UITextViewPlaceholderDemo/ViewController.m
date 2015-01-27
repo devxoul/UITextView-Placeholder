@@ -9,17 +9,19 @@
 #import "ViewController.h"
 #import "UITextView+Placeholder.h"
 
+@interface ViewController ()
+
+@property (weak, nonatomic) IBOutlet UITextView *textView;
+
+
+@end
+
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    UITextView *textView = [[UITextView alloc] init];
-    textView.frame = CGRectMake(0, 20, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds));
-    textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    textView.placeholder = @"How are you?";
-    textView.font = [UIFont systemFontOfSize:15];
-    [self.view addSubview:textView];
+    _textView.placeholder = @"How are you?";
 }
 
 @end
