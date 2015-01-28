@@ -145,6 +145,7 @@
     }
 
     [self insertSubview:self.placeholderLabel atIndex:0];
+    [self.placeholderLabel sizeToFit];
 
     self.placeholderLabel.font = self.font;
     self.placeholderLabel.textAlignment = self.textAlignment;
@@ -154,9 +155,9 @@
     frame.origin.y = self.textContainerInset.top;
     frame.size.width = (CGRectGetWidth(self.bounds) - frame.origin.x -
                         self.textContainer.lineFragmentPadding - self.textContainerInset.right);
-    self.placeholderLabel.frame = frame;
+    frame.size.height = [self.placeholderLabel sizeThatFits:frame.size].height;
 
-    [self.placeholderLabel sizeToFit];
+    self.placeholderLabel.frame = frame;
 }
 
 @end
