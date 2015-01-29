@@ -17,8 +17,9 @@
     UITextView *textView = [[UITextView alloc] init];
     textView.frame = CGRectMake(0, 20, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds));
     textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    textView.placeholder = @"How are you?";
+    textView.placeholder = @"Are you sure you don\'t want to reconsider? Could you tell us why you wish to leave StyleShare? Your opinion helps us improve StyleShare into a better place for fashionistas from all around the world. We are always listening to our users. Help us improve!";
     textView.font = [UIFont systemFontOfSize:15];
+    textView.textContainerInset = UIEdgeInsetsMake(10, 5, 10, 5);
     [self.view addSubview:textView];
 }
 

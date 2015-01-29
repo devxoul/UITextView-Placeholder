@@ -148,14 +148,13 @@
 
     self.placeholderLabel.font = self.font;
     self.placeholderLabel.textAlignment = self.textAlignment;
-    [self.placeholderLabel sizeToFit];
 
-    CGRect frame = self.placeholderLabel.frame;
-    frame.origin.x = self.textContainer.lineFragmentPadding + self.textContainerInset.left;
-    frame.origin.y = self.textContainerInset.top;
-    frame.size.width = (CGRectGetWidth(self.bounds) - frame.origin.x -
-                        self.textContainer.lineFragmentPadding - self.textContainerInset.right);
-    self.placeholderLabel.frame = frame;
+    CGFloat x = self.textContainer.lineFragmentPadding + self.textContainerInset.left;
+    CGFloat y = self.textContainerInset.top;
+    CGFloat width = (CGRectGetWidth(self.bounds) - x - self.textContainer.lineFragmentPadding
+                     - self.textContainerInset.right);
+    CGFloat height = [self.placeholderLabel sizeThatFits:CGSizeMake(width, 0)].height;
+    self.placeholderLabel.frame = CGRectMake(x, y, width, height);
 }
 
 @end
