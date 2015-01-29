@@ -73,6 +73,7 @@
         label.textColor = [self.class defaultPlaceholderColor];
         label.numberOfLines = 0;
         label.userInteractionEnabled = NO;
+        label.numberOfLines = 0;
         objc_setAssociatedObject(self, @selector(placeholderLabel), label, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -145,16 +146,18 @@
     }
 
     [self insertSubview:self.placeholderLabel atIndex:0];
+    [self.placeholderLabel sizeToFit];
 
     self.placeholderLabel.font = self.font;
     self.placeholderLabel.textAlignment = self.textAlignment;
-    [self.placeholderLabel sizeToFit];
 
     CGRect frame = self.placeholderLabel.frame;
     frame.origin.x = self.textContainer.lineFragmentPadding + self.textContainerInset.left;
     frame.origin.y = self.textContainerInset.top;
     frame.size.width = (CGRectGetWidth(self.bounds) - frame.origin.x -
                         self.textContainer.lineFragmentPadding - self.textContainerInset.right);
+    frame.size.height = [self.placeholderLabel sizeThatFits:frame.size].height;
+
     self.placeholderLabel.frame = frame;
 }
 
