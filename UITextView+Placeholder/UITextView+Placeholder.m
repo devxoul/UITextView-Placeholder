@@ -85,7 +85,8 @@
                                    @"font",
                                    @"frame",
                                    @"text",
-                                   @"textAlignment"];
+                                   @"textAlignment",
+                                   @"textContainerInset"];
         for (NSString *key in observingKeys) {
             [self addObserver:self forKeyPath:key options:NSKeyValueObservingOptionNew context:nil];
         }
