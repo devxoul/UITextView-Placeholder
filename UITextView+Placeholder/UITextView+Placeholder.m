@@ -150,10 +150,27 @@
     self.placeholderLabel.font = self.font;
     self.placeholderLabel.textAlignment = self.textAlignment;
 
-    CGFloat x = self.textContainer.lineFragmentPadding + self.textContainerInset.left;
-    CGFloat y = self.textContainerInset.top;
-    CGFloat width = (CGRectGetWidth(self.bounds) - x - self.textContainer.lineFragmentPadding
-                     - self.textContainerInset.right);
+    // `NSTextContainer` is available since iOS 7
+    CGFloat lineFragmentPadding;
+    UIEdgeInsets textContainerInset;
+
+#pragma deploymate push "ignored-api-availability"
+    // iOS 7+
+    if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) {
+        lineFragmentPadding = self.textContainer.lineFragmentPadding;
+        textContainerInset = self.textContainerInset;
+    }
+#pragma deploymate pop
+
+    // iOS 6
+    else {
+        lineFragmentPadding = 5;
+        textContainerInset = UIEdgeInsetsMake(8, 0, 8, 0);
+    }
+
+    CGFloat x = lineFragmentPadding + textContainerInset.left;
+    CGFloat y = textContainerInset.top;
+    CGFloat width = CGRectGetWidth(self.bounds) - x - lineFragmentPadding - textContainerInset.right;
     CGFloat height = [self.placeholderLabel sizeThatFits:CGSizeMake(width, 0)].height;
     self.placeholderLabel.frame = CGRectMake(x, y, width, height);
 }
