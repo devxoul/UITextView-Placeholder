@@ -25,24 +25,26 @@
 #import <objc/runtime.h>
 #import "UITextView+Placeholder.h"
 
-@interface DeallocHooker : NSObject
+@implementation UITextView (Placeholder)
 
-@property (nonatomic, strong) void (^willDealloc)(void);
+#pragma mark - Swizzle Dealloc
 
-@end
++ (void)load {
+    [super load];
 
-@implementation DeallocHooker
+    // is this the best solution?
+    method_exchangeImplementations(class_getInstanceMethod(self.class, NSSelectorFromString(@"dealloc")),
+                                   class_getInstanceMethod(self.class, @selector(swizzledDealloc)));
+}
 
-- (void)dealloc {
-    if (self.willDealloc) {
-        self.willDealloc();
+- (void)swizzledDealloc {
+    [self swizzledDealloc];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    for (NSString *key in self.class.observingKeys) {
+        [self removeObserver:self forKeyPath:key];
     }
 }
 
-@end
-
-
-@implementation UITextView (Placeholder)
 
 #pragma mark - Class Methods
 #pragma mark `defaultPlaceholderColor`
@@ -56,6 +58,19 @@
         color = [textField valueForKeyPath:@"_placeholderLabel.textColor"];
     });
     return color;
+}
+
+
+#pragma mark - `observingKeys`
+
++ (NSArray *)observingKeys {
+    return @[@"attributedText",
+             @"bounds",
+             @"font",
+             @"frame",
+             @"text",
+             @"textAlignment",
+             @"textContainerInset"];
 }
 
 
@@ -80,25 +95,9 @@
                                                      name:UITextViewTextDidChangeNotification
                                                    object:self];
 
-        NSArray *observingKeys = @[@"attributedText",
-                                   @"bounds",
-                                   @"font",
-                                   @"frame",
-                                   @"text",
-                                   @"textAlignment",
-                                   @"textContainerInset"];
-        for (NSString *key in observingKeys) {
+        for (NSString *key in self.class.observingKeys) {
             [self addObserver:self forKeyPath:key options:NSKeyValueObservingOptionNew context:nil];
         }
-
-        DeallocHooker *hooker = [[DeallocHooker alloc] init];
-        hooker.willDealloc = ^{
-            [[NSNotificationCenter defaultCenter] removeObserver:self];
-            for (NSString *key in observingKeys) {
-                [self removeObserver:self forKeyPath:key];
-            }
-        };
-        objc_setAssociatedObject(self, @"deallocHooker", hooker, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     return label;
 }
