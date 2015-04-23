@@ -38,11 +38,16 @@
 }
 
 - (void)swizzledDealloc {
-    [self swizzledDealloc];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     for (NSString *key in self.class.observingKeys) {
-        [self removeObserver:self forKeyPath:key];
+        @try {
+            [self removeObserver:self forKeyPath:key];
+        }
+        @catch (NSException *exception) {
+            // Do nothing
+        }
     }
+    [self swizzledDealloc];
 }
 
 
