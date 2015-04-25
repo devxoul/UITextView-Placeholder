@@ -55,14 +55,7 @@
 #pragma mark `defaultPlaceholderColor`
 
 + (UIColor *)defaultPlaceholderColor {
-    static UIColor *color = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        UITextField *textField = [[UITextField alloc] init];
-        textField.placeholder = @" ";
-        color = [textField valueForKeyPath:@"_placeholderLabel.textColor"];
-    });
-    return color;
+    return [UIColor colorWithWhite:0.70f alpha:1.0f];
 }
 
 
@@ -107,7 +100,6 @@
     return label;
 }
 
-
 #pragma mark `placeholder`
 
 - (NSString *)placeholder {
@@ -119,6 +111,14 @@
     [self updatePlaceholderLabel];
 }
 
+- (NSAttributedString *)attributedPlaceholder {
+    return self.placeholderLabel.attributedText;
+}
+
+- (void)setAttributedPlaceholder:(NSAttributedString *)attributedPlaceholder {
+    self.placeholderLabel.attributedText = attributedPlaceholder;
+    [self updatePlaceholderLabel];
+}
 
 #pragma mark `placeholderColor`
 
@@ -129,7 +129,6 @@
 - (void)setPlaceholderColor:(UIColor *)placeholderColor {
     self.placeholderLabel.textColor = placeholderColor;
 }
-
 
 #pragma mark - KVO
 
