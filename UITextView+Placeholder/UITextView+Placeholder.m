@@ -39,12 +39,15 @@
 
 - (void)swizzledDealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    for (NSString *key in self.class.observingKeys) {
-        @try {
-            [self removeObserver:self forKeyPath:key];
-        }
-        @catch (NSException *exception) {
-            // Do nothing
+    UILabel *label = objc_getAssociatedObject(self, @selector(placeholderLabel));
+    if (label) {
+        for (NSString *key in self.class.observingKeys) {
+            @try {
+                [self removeObserver:self forKeyPath:key];
+            }
+            @catch (NSException *exception) {
+                // Do nothing
+            }
         }
     }
     [self swizzledDealloc];
