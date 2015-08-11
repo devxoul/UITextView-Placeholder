@@ -25,6 +25,7 @@ Create `UITextView`, then set `placeholder`.
 UITextView *textView = [[UITextView alloc] init];
 textView.placeholder = @"How are you?";
 textView.placeholderColor = [UIColor lightGrayColor]; // optional
+textView.placeholderFont = [UIFont fontWithName:textView.font.fontName size:20]; //optional
 ```
 
 Congratulations! You're done.
