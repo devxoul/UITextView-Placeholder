@@ -18,6 +18,7 @@
     textView.frame = CGRectMake(0, 20, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds));
     textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     textView.placeholder = @"Are you sure you don\'t want to reconsider? Could you tell us why you wish to leave StyleShare? Your opinion helps us improve StyleShare into a better place for fashionistas from all around the world. We are always listening to our users. Help us improve!";
+    textView.placeholderFont = [UIFont fontWithName:textView.font.fontName size:20];
     textView.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:textView];
 }
