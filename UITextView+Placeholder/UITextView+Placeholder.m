@@ -122,6 +122,14 @@
     [self updatePlaceholderLabel];
 }
 
+- (NSAttributedString *)attributedPlaceholder {
+    return self.placeholderLabel.attributedText;
+}
+
+- (void)setAttributedPlaceholder:(NSAttributedString *)attributedPlaceholder {
+    self.placeholderLabel.attributedText = attributedPlaceholder;
+    [self updatePlaceholderLabel];
+}
 
 #pragma mark `placeholderColor`
 
