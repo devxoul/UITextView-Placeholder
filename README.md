@@ -29,6 +29,14 @@ textView.placeholderColor = [UIColor lightGrayColor]; // optional
 
 Congratulations! You're done.
 
+--
+
+Since 1.1.0 you can use `attributedPlaceholder`.
+
+```objc
+textView.attributedPlaceholder = ... // NSAttributedString
+```
+
 
 License
 -------
