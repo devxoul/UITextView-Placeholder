@@ -43,6 +43,7 @@
 		036F3BBB1A38850800D09886 /* UITextViewPlaceholderDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITextViewPlaceholderDemoTests.m; sourceTree = "<group>"; };
 		036F3BC61A38855F00D09886 /* UITextView+Placeholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Placeholder.h"; sourceTree = "<group>"; };
 		036F3BC71A38855F00D09886 /* UITextView+Placeholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Placeholder.m"; sourceTree = "<group>"; };
+		943544171C4F3C6D00C32178 /* UITextView+Placeholder.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "UITextView+Placeholder.podspec"; path = "../UITextView+Placeholder.podspec"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +67,7 @@
 		036F3B931A38850700D09886 = {
 			isa = PBXGroup;
 			children = (
+				943544171C4F3C6D00C32178 /* UITextView+Placeholder.podspec */,
 				036F3B9E1A38850800D09886 /* UITextViewPlaceholderDemo */,
 				036F3BB81A38850800D09886 /* UITextViewPlaceholderDemoTests */,
 				036F3B9D1A38850800D09886 /* Products */,
@@ -431,6 +433,7 @@
 				036F3BC11A38850800D09886 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		036F3BC21A38850800D09886 /* Build configuration list for PBXNativeTarget "UITextViewPlaceholderDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -439,6 +442,7 @@
 				036F3BC41A38850800D09886 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
