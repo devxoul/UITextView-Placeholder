@@ -30,8 +30,6 @@
 #pragma mark - Swizzle Dealloc
 
 + (void)load {
-    [super load];
-
     // is this the best solution?
     method_exchangeImplementations(class_getInstanceMethod(self.class, NSSelectorFromString(@"dealloc")),
                                    class_getInstanceMethod(self.class, @selector(swizzledDealloc)));
