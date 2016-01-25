@@ -139,6 +139,9 @@
     self.placeholderLabel.textColor = placeholderColor;
 }
 
+- (void)setPlaceholderFont:(UIFont *)placeholderFont {
+    self.placeholderLabel.font = placeholderFont;
+}
 
 #pragma mark - KVO
 
@@ -160,7 +163,6 @@
 
     [self insertSubview:self.placeholderLabel atIndex:0];
 
-    self.placeholderLabel.font = self.font;
     self.placeholderLabel.textAlignment = self.textAlignment;
 
     // `NSTextContainer` is available since iOS 7
