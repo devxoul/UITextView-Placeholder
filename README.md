@@ -13,33 +13,40 @@ Installation
 Use [CocoaPods](http://cocoapods.org).
 
 ```ruby
-pod 'UITextView+Placeholder'
+pod 'UITextView+Placeholder', '~> 1.2'
 ```
 
 
 Usage
 -----
 
-Create `UITextView`, then set `placeholder`.
+- **Import Dynamic Framework**:
+
+    e.g. If you're using CocoaPods with `use_frameworks!` flag.
+
+    ```objc
+    @import UITextView_Placeholder;
+    ```
+    
+- **Import Static Library**:
+
+    ```objc
+    #import <UITextView+Placeholder/UITextView+Placeholder.h>
+    ```
+
+Then create `UITextView` and set `placeholder`.
 
 ```objc
 UITextView *textView = [[UITextView alloc] init];
 textView.placeholder = @"How are you?";
 textView.placeholderColor = [UIColor lightGrayColor]; // optional
+textView.attributedPlaceholder = ... // NSAttributedString (optional)
 ```
 
-Congratulations! You're done.
-
---
-
-Since 1.1.0 you can use `attributedPlaceholder`.
-
-```objc
-textView.attributedPlaceholder = ... // NSAttributedString
-```
+Congratulations! You're done. 🎉
 
 
 License
 -------
 
-UITextView+Placeholder is under MIT license. See LICENSE for more information.
+UITextView+Placeholder is under MIT license. See the [LICENSE](LICENSE) file for more information.
