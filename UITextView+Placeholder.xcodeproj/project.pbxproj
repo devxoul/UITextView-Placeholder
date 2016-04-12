@@ -17,10 +17,20 @@
 		0309F8D81CBCC8A700062D3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0309F8D61CBCC8A700062D3B /* LaunchScreen.storyboard */; };
 		0309F8DD1CBCC91300062D3B /* UITextView_Placeholder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0309F8AD1CBCC7FF00062D3B /* UITextView_Placeholder.framework */; };
 		0309F8DE1CBCC91300062D3B /* UITextView_Placeholder.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0309F8AD1CBCC7FF00062D3B /* UITextView_Placeholder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0309F8F81CBCCD6500062D3B /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0309F8F71CBCCD6500062D3B /* Tests.swift */; };
+		0309F9001CBCCD8D00062D3B /* UITextView_Placeholder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0309F8AD1CBCC7FF00062D3B /* UITextView_Placeholder.framework */; };
+		0309F9041CBCEE4700062D3B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0309F9031CBCEE4700062D3B /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		0309F8DF1CBCC91300062D3B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0309F8A41CBCC7FF00062D3B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0309F8AC1CBCC7FF00062D3B;
+			remoteInfo = "UITextView+Placeholder";
+		};
+		0309F8FB1CBCCD6500062D3B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0309F8A41CBCC7FF00062D3B /* Project object */;
 			proxyType = 1;
@@ -58,6 +68,9 @@
 		0309F8D41CBCC8A700062D3B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0309F8D71CBCC8A700062D3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0309F8D91CBCC8A700062D3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0309F8F51CBCCD6500062D3B /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0309F8F71CBCCD6500062D3B /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		0309F9031CBCEE4700062D3B /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +89,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0309F8F21CBCCD6500062D3B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0309F9001CBCCD8D00062D3B /* UITextView_Placeholder.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -85,6 +106,7 @@
 				0309F8BA1CBCC84400062D3B /* Sources */,
 				0309F8C71CBCC8A700062D3B /* Demo */,
 				0309F8BF1CBCC85900062D3B /* Supporting Files */,
+				0309F8F61CBCCD6500062D3B /* Tests */,
 				0309F8AE1CBCC7FF00062D3B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -94,6 +116,7 @@
 			children = (
 				0309F8AD1CBCC7FF00062D3B /* UITextView_Placeholder.framework */,
 				0309F8C61CBCC8A700062D3B /* Demo.app */,
+				0309F8F51CBCCD6500062D3B /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -137,6 +160,15 @@
 				0309F8C91CBCC8A700062D3B /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0309F8F61CBCCD6500062D3B /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				0309F8F71CBCCD6500062D3B /* Tests.swift */,
+				0309F9031CBCEE4700062D3B /* Utils.swift */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +222,24 @@
 			productReference = 0309F8C61CBCC8A700062D3B /* Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
+		0309F8F41CBCCD6500062D3B /* Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0309F8FF1CBCCD6500062D3B /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildPhases = (
+				0309F8F11CBCCD6500062D3B /* Sources */,
+				0309F8F21CBCCD6500062D3B /* Frameworks */,
+				0309F8F31CBCCD6500062D3B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0309F8FC1CBCCD6500062D3B /* PBXTargetDependency */,
+			);
+			name = Tests;
+			productName = Tests;
+			productReference = 0309F8F51CBCCD6500062D3B /* Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -204,6 +254,9 @@
 						CreatedOnToolsVersion = 7.3;
 					};
 					0309F8C51CBCC8A700062D3B = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					0309F8F41CBCCD6500062D3B = {
 						CreatedOnToolsVersion = 7.3;
 					};
 				};
@@ -223,6 +276,7 @@
 			targets = (
 				0309F8AC1CBCC7FF00062D3B /* UITextView+Placeholder */,
 				0309F8C51CBCC8A700062D3B /* Demo */,
+				0309F8F41CBCCD6500062D3B /* Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -242,6 +296,13 @@
 				0309F8D81CBCC8A700062D3B /* LaunchScreen.storyboard in Resources */,
 				0309F8D51CBCC8A700062D3B /* Assets.xcassets in Resources */,
 				0309F8D31CBCC8A700062D3B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0309F8F31CBCCD6500062D3B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +327,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0309F8F11CBCCD6500062D3B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0309F8F81CBCCD6500062D3B /* Tests.swift in Sources */,
+				0309F9041CBCEE4700062D3B /* Utils.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -273,6 +343,11 @@
 			isa = PBXTargetDependency;
 			target = 0309F8AC1CBCC7FF00062D3B /* UITextView+Placeholder */;
 			targetProxy = 0309F8DF1CBCC91300062D3B /* PBXContainerItemProxy */;
+		};
+		0309F8FC1CBCCD6500062D3B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0309F8AC1CBCC7FF00062D3B /* UITextView+Placeholder */;
+			targetProxy = 0309F8FB1CBCCD6500062D3B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -447,6 +522,28 @@
 			};
 			name = Release;
 		};
+		0309F8FD1CBCCD6500062D3B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kr.xoul.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0309F8FE1CBCCD6500062D3B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kr.xoul.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -473,6 +570,15 @@
 			buildConfigurations = (
 				0309F8DB1CBCC8A700062D3B /* Debug */,
 				0309F8DC1CBCC8A700062D3B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0309F8FF1CBCCD6500062D3B /* Build configuration list for PBXNativeTarget "Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0309F8FD1CBCCD6500062D3B /* Debug */,
+				0309F8FE1CBCCD6500062D3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
