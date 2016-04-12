@@ -94,6 +94,10 @@
         label.userInteractionEnabled = NO;
         objc_setAssociatedObject(self, @selector(placeholderLabel), label, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
+        self.needsUpdateFont = YES;
+        [self updatePlaceholderLabel];
+        self.needsUpdateFont = NO;
+
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(updatePlaceholderLabel)
                                                      name:UITextViewTextDidChangeNotification
@@ -138,12 +142,26 @@
 }
 
 
+#pragma mark `needsUpdateFont`
+
+- (BOOL)needsUpdateFont {
+    return [objc_getAssociatedObject(self, @selector(needsUpdateFont)) boolValue];
+}
+
+- (void)setNeedsUpdateFont:(BOOL)needsUpdate {
+    objc_setAssociatedObject(self, @selector(needsUpdateFont), @(needsUpdate), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+
 #pragma mark - KVO
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary *)change
                        context:(void *)context {
+    if ([keyPath isEqualToString:@"font"]) {
+        self.needsUpdateFont = (change[NSKeyValueChangeNewKey] != nil);
+    }
     [self updatePlaceholderLabel];
 }
 
@@ -158,7 +176,10 @@
 
     [self insertSubview:self.placeholderLabel atIndex:0];
 
-    self.placeholderLabel.font = self.font;
+    if (self.needsUpdateFont) {
+        self.placeholderLabel.font = self.font;
+        self.needsUpdateFont = NO;
+    }
     self.placeholderLabel.textAlignment = self.textAlignment;
 
     // `NSTextContainer` is available since iOS 7
