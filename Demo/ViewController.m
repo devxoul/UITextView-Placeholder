@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "UITextView+Placeholder.h"
+#import <UITextView_Placeholder/UITextView+Placeholder.h>
 
 @implementation ViewController
 

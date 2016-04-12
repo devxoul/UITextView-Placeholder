@@ -9,6 +9,6 @@ Pod::Spec.new do |s|
                      :tag => "#{s.version}" }
   s.platform     = :ios, '6.0'
   s.requires_arc = true
-  s.source_files = 'UITextView+Placeholder/UITextView+Placeholder.{h,m}'
+  s.source_files = 'Sources/UITextView+Placeholder.{h,m}'
   s.frameworks   = 'Foundation', 'UIKit'
 end
