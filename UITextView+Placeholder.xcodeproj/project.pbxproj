@@ -20,6 +20,7 @@
 		0309F8F81CBCCD6500062D3B /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0309F8F71CBCCD6500062D3B /* Tests.swift */; };
 		0309F9001CBCCD8D00062D3B /* UITextView_Placeholder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0309F8AD1CBCC7FF00062D3B /* UITextView_Placeholder.framework */; };
 		0309F9041CBCEE4700062D3B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0309F9031CBCEE4700062D3B /* Utils.swift */; };
+		D0F91DA81DD4711600DC3CFB /* UITextView+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0309F8BC1CBCC84400062D3B /* UITextView+Placeholder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -252,12 +253,14 @@
 				TargetAttributes = {
 					0309F8AC1CBCC7FF00062D3B = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0810;
 					};
 					0309F8C51CBCC8A700062D3B = {
 						CreatedOnToolsVersion = 7.3;
 					};
 					0309F8F41CBCCD6500062D3B = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0810;
 					};
 				};
 			};
@@ -324,6 +327,7 @@
 				0309F8D01CBCC8A700062D3B /* ViewController.m in Sources */,
 				0309F8CD1CBCC8A700062D3B /* AppDelegate.m in Sources */,
 				0309F8CA1CBCC8A700062D3B /* main.m in Sources */,
+				D0F91DA81DD4711600DC3CFB /* UITextView+Placeholder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,6 +481,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "kr.xoul.UITextView-Placeholder";
 				PRODUCT_NAME = UITextView_Placeholder;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -495,6 +500,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "kr.xoul.UITextView-Placeholder";
 				PRODUCT_NAME = UITextView_Placeholder;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -530,6 +536,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kr.xoul.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -541,6 +548,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kr.xoul.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
