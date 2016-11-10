@@ -19,22 +19,21 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
-
 import UIKit
 
 enum Font {
-    case normal(CGFloat)
-    case bold(CGFloat)
-
+    case Normal(CGFloat)
+    case Bold(CGFloat)
+    
     var font: UIFont {
         switch self {
-        case .normal(let size): return UIFont.systemFont(ofSize: size)
-        case .bold(let size): return UIFont.boldSystemFont(ofSize: size)
+        case .Normal(let size): return UIFont.systemFontOfSize(size)
+        case .Bold(let size): return UIFont.boldSystemFontOfSize(size)
         }
     }
 }
 
-func attributedString(_ string: String, _ font: Font) -> NSAttributedString {
+func attributedString(string: String, _ font: Font) -> NSAttributedString {
     let attributes = [NSFontAttributeName: font.font]
     return NSAttributedString(string: string, attributes: attributes)
 }

@@ -20,7 +20,6 @@
 		0309F8F81CBCCD6500062D3B /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0309F8F71CBCCD6500062D3B /* Tests.swift */; };
 		0309F9001CBCCD8D00062D3B /* UITextView_Placeholder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0309F8AD1CBCC7FF00062D3B /* UITextView_Placeholder.framework */; };
 		0309F9041CBCEE4700062D3B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0309F9031CBCEE4700062D3B /* Utils.swift */; };
-		D0F91DA81DD4711600DC3CFB /* UITextView+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0309F8BC1CBCC84400062D3B /* UITextView+Placeholder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -261,6 +260,7 @@
 					0309F8F41CBCCD6500062D3B = {
 						CreatedOnToolsVersion = 7.3;
 						LastSwiftMigration = 0810;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -327,7 +327,6 @@
 				0309F8D01CBCC8A700062D3B /* ViewController.m in Sources */,
 				0309F8CD1CBCC8A700062D3B /* AppDelegate.m in Sources */,
 				0309F8CA1CBCC8A700062D3B /* main.m in Sources */,
-				D0F91DA81DD4711600DC3CFB /* UITextView+Placeholder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,7 +480,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "kr.xoul.UITextView-Placeholder";
 				PRODUCT_NAME = UITextView_Placeholder;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -500,7 +499,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "kr.xoul.UITextView-Placeholder";
 				PRODUCT_NAME = UITextView_Placeholder;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
@@ -531,24 +530,28 @@
 		0309F8FD1CBCCD6500062D3B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kr.xoul.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
 		0309F8FE1CBCCD6500062D3B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kr.xoul.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
