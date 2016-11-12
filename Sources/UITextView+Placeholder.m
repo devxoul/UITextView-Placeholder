@@ -121,16 +121,6 @@
     return color;
 }
 
-+ (NSArray *)observingKeys {
-    return @[@"attributedText",
-             @"bounds",
-             @"font",
-             @"frame",
-             @"text",
-             @"textAlignment",
-             @"textContainerInset"];
-}
-
 #pragma mark - Properties
 #pragma mark `placeholderLabel`
 
