@@ -39,6 +39,7 @@ class Tests: XCTestCase {
         XCTAssertEqual(self.textView.placeholderLabel.text, "Hello")
         self.textView.placeholder = nil
         XCTAssertEqual(self.textView.placeholderLabel.text, nil)
+        self.textView = nil;
     }
     
     func testAttributedPlaceholder() {
