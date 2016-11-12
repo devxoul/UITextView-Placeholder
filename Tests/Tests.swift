@@ -42,6 +42,28 @@ class Tests: XCTestCase {
         self.textView = nil;
     }
     
+    func testRelease() {
+        self.textView.placeholder = "Hello"
+        XCTAssertEqual(self.textView.placeholderLabel.text, "Hello")
+        self.textView.placeholder = nil
+        XCTAssertEqual(self.textView.placeholderLabel.text, nil)
+        
+        self.textView = nil
+    }
+    
+    func testNotification() {
+        self.textView.text = "SomeText"
+        self.textView.placeholder = "Hello";
+        XCTAssertNil(self.textView.placeholderLabel.superview);
+        self.textView.selectAll(nil);
+        self.textView .replaceRange(self.textView.selectedTextRange!, withText: "");
+        XCTAssertNotNil(self.textView.placeholderLabel.superview);
+        
+        self.textView.selectAll(nil);
+        self.textView .replaceRange(self.textView.selectedTextRange!, withText: "OtherText");
+        XCTAssertNil(self.textView.placeholderLabel.superview);
+    }
+    
     func testAttributedPlaceholder() {
         let attributedPlaceholder = attributedString("Hello", .Bold(26))
         self.textView.attributedPlaceholder = attributedPlaceholder
