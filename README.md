@@ -50,7 +50,7 @@ textView.attributedPlaceholder = ... // NSAttributedString (optional)
 ```swift
 let textView: UITextView = UITextView()
 textView.placeholder = @"How are you?"
-textView.placeholderColor = UIColor.lightGray() // optional
+textView.placeholderColor = UIColor.lightGray // optional
 textView.attributedPlaceholder = ... // NSAttributedString (optional)
 ```
 
