@@ -23,32 +23,89 @@
 #import <objc/runtime.h>
 #import "UITextView+Placeholder.h"
 
+#pragma mark - `observingKeys`
+
+@interface DWTextViewEventObserver : NSObject
+
+@property (copy, nonatomic) void (^execution)(BOOL fontChanged);
+// can't use weak, because weak before UITextView object dealloc, it will set all weak reference to nil
+// it will make our removeObserver failed to remove.
+@property (unsafe_unretained, nonatomic) UITextView *target;
+
+@end
+
+@implementation DWTextViewEventObserver
+
++ (void)observe:(UITextView *)target then:(void (^)(BOOL fontChanged))exec {
+    DWTextViewEventObserver *monitor = [[DWTextViewEventObserver alloc] init];
+    monitor.execution = exec;
+    monitor.target = target;
+    [monitor observeEvents];
+    int randomKey;
+    // It is true that swizzle method of dealloc in NSObject Category can do the same thing, but that will cause method polluted!
+    objc_setAssociatedObject(target, &randomKey, monitor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+#pragma mark - LifeCycle
++ (NSArray *)observingKeys {
+    return @[@"attributedText",
+             @"bounds",
+             @"font",
+             @"frame",
+             @"text",
+             @"textAlignment",
+             @"textContainerInset"];
+}
+
+- (void)dealloc {
+    [self releaseObserveKeys];
+}
+
+- (void)observeEvents {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updatePlaceholderLabel)
+                                                 name:UITextViewTextDidChangeNotification
+                                               object:self.target];
+    
+    for (NSString *key in self.class.observingKeys) {
+        [self.target addObserver:self forKeyPath:key options:NSKeyValueObservingOptionNew context:nil];
+    }
+}
+
+- (void)updatePlaceholderLabel {
+    if (self.execution) {
+        self.execution(NO);
+    }
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+    if (self.execution) {
+        BOOL updateFont = [keyPath isEqualToString:@"font"] && change[NSKeyValueChangeNewKey] != nil;
+        self.execution(updateFont);
+    }
+}
+
+- (void)releaseObserveKeys {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    for (NSString *key in self.class.observingKeys) {
+        @try {
+            [self.target removeObserver:self forKeyPath:key context:nil];
+        }
+        @catch (NSException *exception) {
+            // Do nothing
+        }
+    }
+}
+
+@end
+
 @implementation UITextView (Placeholder)
 
 #pragma mark - Swizzle Dealloc
-
-+ (void)load {
-    // is this the best solution?
-    method_exchangeImplementations(class_getInstanceMethod(self.class, NSSelectorFromString(@"dealloc")),
-                                   class_getInstanceMethod(self.class, @selector(swizzledDealloc)));
-}
-
-- (void)swizzledDealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    UILabel *label = objc_getAssociatedObject(self, @selector(placeholderLabel));
-    if (label) {
-        for (NSString *key in self.class.observingKeys) {
-            @try {
-                [self removeObserver:self forKeyPath:key];
-            }
-            @catch (NSException *exception) {
-                // Do nothing
-            }
-        }
-    }
-    [self swizzledDealloc];
-}
-
 
 #pragma mark - Class Methods
 #pragma mark `defaultPlaceholderColor`
@@ -63,20 +120,6 @@
     });
     return color;
 }
-
-
-#pragma mark - `observingKeys`
-
-+ (NSArray *)observingKeys {
-    return @[@"attributedText",
-             @"bounds",
-             @"font",
-             @"frame",
-             @"text",
-             @"textAlignment",
-             @"textContainerInset"];
-}
-
 
 #pragma mark - Properties
 #pragma mark `placeholderLabel`
@@ -98,14 +141,13 @@
         [self updatePlaceholderLabel];
         self.needsUpdateFont = NO;
 
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(updatePlaceholderLabel)
-                                                     name:UITextViewTextDidChangeNotification
-                                                   object:self];
-
-        for (NSString *key in self.class.observingKeys) {
-            [self addObserver:self forKeyPath:key options:NSKeyValueObservingOptionNew context:nil];
-        }
+        __weak typeof(self) weakSelf = self;
+        [DWTextViewEventObserver observe:self then:^(BOOL fontChanged) {
+            if (fontChanged) {
+                weakSelf.needsUpdateFont = fontChanged;
+            }
+            [weakSelf updatePlaceholderLabel];
+        }];
     }
     return label;
 }
@@ -141,7 +183,6 @@
     self.placeholderLabel.textColor = placeholderColor;
 }
 
-
 #pragma mark `needsUpdateFont`
 
 - (BOOL)needsUpdateFont {
@@ -153,21 +194,7 @@
 }
 
 
-#pragma mark - KVO
-
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary *)change
-                       context:(void *)context {
-    if ([keyPath isEqualToString:@"font"]) {
-        self.needsUpdateFont = (change[NSKeyValueChangeNewKey] != nil);
-    }
-    [self updatePlaceholderLabel];
-}
-
-
 #pragma mark - Update
-
 - (void)updatePlaceholderLabel {
     if (self.text.length) {
         [self.placeholderLabel removeFromSuperview];
@@ -180,6 +207,7 @@
         self.placeholderLabel.font = self.font;
         self.needsUpdateFont = NO;
     }
+
     self.placeholderLabel.textAlignment = self.textAlignment;
 
     // `NSTextContainer` is available since iOS 7
