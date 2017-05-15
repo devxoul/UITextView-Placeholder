@@ -36,10 +36,21 @@ Usage
 
 Then create `UITextView` and set `placeholder`.
 
+- **Implement Objective-C**:
+
 ```objc
 UITextView *textView = [[UITextView alloc] init];
 textView.placeholder = @"How are you?";
 textView.placeholderColor = [UIColor lightGrayColor]; // optional
+textView.attributedPlaceholder = ... // NSAttributedString (optional)
+```
+
+- **Implement Swift**:
+
+```swift
+let textView: UITextView = UITextView()
+textView.placeholder = @"How are you?"
+textView.placeholderColor = UIColor.lightGray // optional
 textView.attributedPlaceholder = ... // NSAttributedString (optional)
 ```
 
