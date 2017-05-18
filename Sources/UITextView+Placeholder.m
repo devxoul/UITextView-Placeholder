@@ -145,7 +145,8 @@
 #pragma mark `needsUpdateFont`
 
 - (BOOL)needsUpdateFont {
-    return [objc_getAssociatedObject(self, @selector(needsUpdateFont)) boolValue];
+    // return [objc_getAssociatedObject(self, @selector(needsUpdateFont)) boolValue];
+    return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
 
 - (void)setNeedsUpdateFont:(BOOL)needsUpdate {
