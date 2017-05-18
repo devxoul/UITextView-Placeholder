@@ -23,21 +23,38 @@
 #import "ViewController.h"
 #import <UITextView_Placeholder/UITextView+Placeholder.h>
 
+@interface ViewController()
+
+@property (weak, nonatomic) IBOutlet UITextView *textView;
+
+
+@end
+
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    UITextView *textView = [[UITextView alloc] init];
-    textView.frame = CGRectMake(0, 20, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds));
-    textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    textView.placeholder = @"Are you sure you don\'t want to reconsider? Could you tell us why you wish to leave StyleShare? Your opinion helps us improve StyleShare into a better place for fashionistas from all around the world. We are always listening to our users. Help us improve!";
+    self.textView.placeholder = @"Are you sure you don\'t want to reconsider? Could you tell us why you wish to leave StyleShare? Your opinion helps us improve StyleShare into a better place for fashionistas from all around the world. We are always listening to our users. Help us improve!";
+    self.textView.placeholderLabel.textAlignment = NSTextAlignmentCenter;
     NSDictionary *attrs = @ {
         NSFontAttributeName: [UIFont boldSystemFontOfSize:20],
     };
-    textView.attributedText = [[NSAttributedString alloc] initWithString:@"Hi" attributes:attrs];
-    textView.font = [UIFont systemFontOfSize:15];
-    [self.view addSubview:textView];
+    self.textView.attributedText = [[NSAttributedString alloc] initWithString:@"Hi" attributes:attrs];
+    self.textView.font = [UIFont systemFontOfSize:15];
+    [self.view addSubview:self.textView];
+}
+
+- (IBAction)onTextRemove:(id)sender {
+    [self.textView removeFromSuperview];
+}
+
+- (IBAction)onChangeFont:(id)sender {
+    self.textView.font = [UIFont systemFontOfSize:30];
+}
+
+- (IBAction)onChangeColor:(id)sender {
+    self.textView.textColor = [UIColor redColor];
 }
 
 @end
