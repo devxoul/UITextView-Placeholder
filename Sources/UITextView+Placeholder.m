@@ -96,7 +96,6 @@
 
         self.needsUpdateFont = YES;
         [self updatePlaceholderLabel];
-        self.needsUpdateFont = NO;
 
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(updatePlaceholderLabel)
@@ -180,6 +179,7 @@
         self.placeholderLabel.font = self.font;
         self.needsUpdateFont = NO;
     }
+  
     self.placeholderLabel.textAlignment = self.textAlignment;
 
     // `NSTextContainer` is available since iOS 7
