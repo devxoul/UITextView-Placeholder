@@ -87,22 +87,22 @@
         NSAttributedString *originalText = self.attributedText;
         self.text = @" "; // lazily set font of `UITextView`.
         self.attributedText = originalText;
-
+        
         label = [[UILabel alloc] init];
         label.textColor = [self.class defaultPlaceholderColor];
         label.numberOfLines = 0;
         label.userInteractionEnabled = NO;
         objc_setAssociatedObject(self, @selector(placeholderLabel), label, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-
+        
         self.needsUpdateFont = YES;
         [self updatePlaceholderLabel];
         self.needsUpdateFont = NO;
-
+        
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(updatePlaceholderLabel)
                                                      name:UITextViewTextDidChangeNotification
                                                    object:self];
-
+        
         for (NSString *key in self.class.observingKeys) {
             [self addObserver:self forKeyPath:key options:NSKeyValueObservingOptionNew context:nil];
         }
@@ -173,19 +173,25 @@
         [self.placeholderLabel removeFromSuperview];
         return;
     }
-
+    
     [self insertSubview:self.placeholderLabel atIndex:0];
-
+    
     if (self.needsUpdateFont) {
-        self.placeholderLabel.font = self.font;
+        [self.placeholderLabel.attributedText enumerateAttribute:NSFontAttributeName inRange:NSMakeRange(0, self.placeholderLabel.attributedText.length) options:0 usingBlock:^(id value, NSRange range, BOOL *stop) {
+            if(value != nil) {
+                self.placeholderLabel.font = (UIFont *)value;
+            } else {
+                self.placeholderLabel.font = self.font;
+            }
+        }];
         self.needsUpdateFont = NO;
     }
     self.placeholderLabel.textAlignment = self.textAlignment;
-
+    
     // `NSTextContainer` is available since iOS 7
     CGFloat lineFragmentPadding;
     UIEdgeInsets textContainerInset;
-
+    
 #pragma deploymate push "ignored-api-availability"
     // iOS 7+
     if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) {
@@ -193,13 +199,13 @@
         textContainerInset = self.textContainerInset;
     }
 #pragma deploymate pop
-
+    
     // iOS 6
     else {
         lineFragmentPadding = 5;
         textContainerInset = UIEdgeInsetsMake(8, 0, 8, 0);
     }
-
+    
     CGFloat x = lineFragmentPadding + textContainerInset.left;
     CGFloat y = textContainerInset.top;
     CGFloat width = CGRectGetWidth(self.bounds) - x - lineFragmentPadding - textContainerInset.right;
@@ -208,3 +214,4 @@
 }
 
 @end
+
