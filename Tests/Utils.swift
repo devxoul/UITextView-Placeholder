@@ -23,18 +23,17 @@
 import UIKit
 
 enum Font {
-    case Normal(CGFloat)
-    case Bold(CGFloat)
+  case normal(CGFloat)
+  case bold(CGFloat)
 
-    var font: UIFont {
-        switch self {
-        case .Normal(let size): return UIFont.systemFontOfSize(size)
-        case .Bold(let size): return UIFont.boldSystemFontOfSize(size)
-        }
+  var font: UIFont {
+    switch self {
+    case .normal(let size): return UIFont.systemFont(ofSize: size)
+    case .bold(let size): return UIFont.boldSystemFont(ofSize: size)
     }
+  }
 }
 
-func attributedString(string: String, _ font: Font) -> NSAttributedString {
-    let attributes = [NSFontAttributeName: font.font]
-    return NSAttributedString(string: string, attributes: attributes)
+func attributedString(_ string: String, _ font: Font) -> NSAttributedString {
+  return NSAttributedString(string: string, attributes: [.font: font.font])
 }
