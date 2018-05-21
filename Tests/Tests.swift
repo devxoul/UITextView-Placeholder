@@ -37,7 +37,7 @@ class Tests: XCTestCase {
 
   // MARK: Basic Tests
 
-  func testPlaceholder() {
+  func testPlaceholderText() {
     self.textView.placeholder = "Hello"
     XCTAssertEqual(self.textView.placeholderLabel.text, "Hello")
     self.textView.placeholder = nil
@@ -48,6 +48,17 @@ class Tests: XCTestCase {
     let attributedPlaceholder = attributedString("Hello", .bold(26))
     self.textView.attributedPlaceholder = attributedPlaceholder
     XCTAssertEqual(self.textView.attributedPlaceholder, attributedPlaceholder)
+  }
+
+  func testPlaceholderLabelHasSuperviewWhileNotEditing() {
+    self.textView.placeholder = "Placeholder"
+    XCTAssertEqual(self.textView.placeholderLabel.superview, self.textView)
+  }
+
+  func testPlaceholderLabelHasNoSuperviewWhileEditing() {
+    self.textView.text = "ABC"
+    self.textView.placeholder = "Placeholder"
+    XCTAssertNil(self.textView.placeholderLabel.superview)
   }
 
 
@@ -81,4 +92,20 @@ class Tests: XCTestCase {
     XCTAssertEqual(self.textView.attributedPlaceholder, attributedString("Hello", .normal(34)))
   }
 
+
+  // MARK: Text
+
+  func testSetPlaceholderBeforeText() {
+    self.textView.font = UIFont.systemFont(ofSize: 32)
+    self.textView.placeholder = "Placeholder text..."
+    self.textView.text = "Hello, world!"
+    XCTAssertEqual(self.textView.placeholderLabel.font, UIFont.systemFont(ofSize: 32))
+  }
+
+  func testSetPlaceholderAfterText() {
+    self.textView.font = UIFont.boldSystemFont(ofSize: 30)
+    self.textView.text = "Hello, world!"
+    self.textView.placeholder = "Placeholder text..."
+    XCTAssertEqual(self.textView.placeholderLabel.font, UIFont.boldSystemFont(ofSize: 30))
+  }
 }
