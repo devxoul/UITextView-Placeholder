@@ -171,10 +171,9 @@
 - (void)updatePlaceholderLabel {
     if (self.text.length) {
         [self.placeholderLabel removeFromSuperview];
-        return;
+    } else {
+        [self insertSubview:self.placeholderLabel atIndex:0];
     }
-
-    [self insertSubview:self.placeholderLabel atIndex:0];
 
     if (self.needsUpdateFont) {
         self.placeholderLabel.font = self.font;
