@@ -84,9 +84,6 @@
 - (UILabel *)placeholderLabel {
     UILabel *label = objc_getAssociatedObject(self, @selector(placeholderLabel));
     if (!label) {
-        NSAttributedString *originalText = self.attributedText;
-        self.text = @" "; // lazily set font of `UITextView`.
-        self.attributedText = originalText;
 
         label = [[UILabel alloc] init];
         label.textColor = [self.class defaultPlaceholderColor];
@@ -94,6 +91,10 @@
         label.userInteractionEnabled = NO;
         objc_setAssociatedObject(self, @selector(placeholderLabel), label, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
+        NSAttributedString *originalText = self.attributedText;
+        self.text = @" "; // lazily set font of `UITextView`.
+        self.attributedText = originalText;
+        
         self.needsUpdateFont = YES;
         [self updatePlaceholderLabel];
         self.needsUpdateFont = NO;
