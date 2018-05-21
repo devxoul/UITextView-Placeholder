@@ -13,7 +13,7 @@ Installation
 Use [CocoaPods](http://cocoapods.org).
 
 ```ruby
-pod 'UITextView+Placeholder', '~> 1.2'
+pod 'UITextView+Placeholder'
 ```
 
 
@@ -38,21 +38,21 @@ Then create `UITextView` and set `placeholder`.
 
 - **Implement Objective-C**:
 
-```objc
-UITextView *textView = [[UITextView alloc] init];
-textView.placeholder = @"How are you?";
-textView.placeholderColor = [UIColor lightGrayColor]; // optional
-textView.attributedPlaceholder = ... // NSAttributedString (optional)
-```
+    ```objc
+    UITextView *textView = [[UITextView alloc] init];
+    textView.placeholder = @"How are you?";
+    textView.placeholderColor = [UIColor lightGrayColor]; // optional
+    textView.attributedPlaceholder = ... // NSAttributedString (optional)
+    ```
 
 - **Implement Swift**:
 
-```swift
-let textView: UITextView = UITextView()
-textView.placeholder = @"How are you?"
-textView.placeholderColor = UIColor.lightGray // optional
-textView.attributedPlaceholder = ... // NSAttributedString (optional)
-```
+    ```swift
+    let textView = UITextView()
+    textView.placeholder = "How are you?"
+    textView.placeholderColor = UIColor.lightGray // optional
+    textView.attributedPlaceholder = ... // NSAttributedString (optional)
+    ```
 
 Congratulations! You're done. 🎉
 
