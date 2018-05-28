@@ -39,6 +39,7 @@
     textView.font = [UIFont systemFontOfSize:15];
     textView.layer.borderColor = UIColor.redColor.CGColor;
     textView.layer.borderWidth = 1.0;
+    textView.textContainerInset = UIEdgeInsetsMake(20, 20, 20, 20);
     UIBezierPath *path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, 50, 50)];
     textView.textContainer.exclusionPaths = @[path];
     [self.view addSubview:textView];
