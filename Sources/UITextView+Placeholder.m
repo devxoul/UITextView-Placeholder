@@ -35,8 +35,8 @@
 
 - (void)swizzledDealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    UILabel *label = objc_getAssociatedObject(self, @selector(placeholderLabel));
-    if (label) {
+    UITextView *textView = objc_getAssociatedObject(self, @selector(placeholderTextView));
+    if (textView) {
         for (NSString *key in self.class.observingKeys) {
             @try {
                 [self removeObserver:self forKeyPath:key];
@@ -74,32 +74,32 @@
              @"frame",
              @"text",
              @"textAlignment",
-             @"textContainerInset"];
+             @"textContainerInset",
+             @"textContainer.exclusionPaths"];
 }
 
 
 #pragma mark - Properties
-#pragma mark `placeholderLabel`
+#pragma mark `placeholderTextView`
 
-- (UILabel *)placeholderLabel {
-    UILabel *label = objc_getAssociatedObject(self, @selector(placeholderLabel));
-    if (!label) {
+- (UITextView *)placeholderTextView {
+    UITextView *textView = objc_getAssociatedObject(self, @selector(placeholderTextView));
+    if (!textView) {
         NSAttributedString *originalText = self.attributedText;
         self.text = @" "; // lazily set font of `UITextView`.
         self.attributedText = originalText;
 
-        label = [[UILabel alloc] init];
-        label.textColor = [self.class defaultPlaceholderColor];
-        label.numberOfLines = 0;
-        label.userInteractionEnabled = NO;
-        objc_setAssociatedObject(self, @selector(placeholderLabel), label, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        textView = [[UITextView alloc] init];
+        textView.textColor = [self.class defaultPlaceholderColor];
+        textView.userInteractionEnabled = NO;
+        objc_setAssociatedObject(self, @selector(placeholderTextView), textView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
         self.needsUpdateFont = YES;
-        [self updatePlaceholderLabel];
+        [self updatePlaceholderTextView];
         self.needsUpdateFont = NO;
 
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(updatePlaceholderLabel)
+                                                 selector:@selector(updatePlaceholderTextView)
                                                      name:UITextViewTextDidChangeNotification
                                                    object:self];
 
@@ -107,38 +107,38 @@
             [self addObserver:self forKeyPath:key options:NSKeyValueObservingOptionNew context:nil];
         }
     }
-    return label;
+    return textView;
 }
 
 
 #pragma mark `placeholder`
 
 - (NSString *)placeholder {
-    return self.placeholderLabel.text;
+    return self.placeholderTextView.text;
 }
 
 - (void)setPlaceholder:(NSString *)placeholder {
-    self.placeholderLabel.text = placeholder;
-    [self updatePlaceholderLabel];
+    self.placeholderTextView.text = placeholder;
+    [self updatePlaceholderTextView];
 }
 
 - (NSAttributedString *)attributedPlaceholder {
-    return self.placeholderLabel.attributedText;
+    return self.placeholderTextView.attributedText;
 }
 
 - (void)setAttributedPlaceholder:(NSAttributedString *)attributedPlaceholder {
-    self.placeholderLabel.attributedText = attributedPlaceholder;
-    [self updatePlaceholderLabel];
+    self.placeholderTextView.attributedText = attributedPlaceholder;
+    [self updatePlaceholderTextView];
 }
 
 #pragma mark `placeholderColor`
 
 - (UIColor *)placeholderColor {
-    return self.placeholderLabel.textColor;
+    return self.placeholderTextView.textColor;
 }
 
 - (void)setPlaceholderColor:(UIColor *)placeholderColor {
-    self.placeholderLabel.textColor = placeholderColor;
+    self.placeholderTextView.textColor = placeholderColor;
 }
 
 
@@ -162,24 +162,24 @@
     if ([keyPath isEqualToString:@"font"]) {
         self.needsUpdateFont = (change[NSKeyValueChangeNewKey] != nil);
     }
-    [self updatePlaceholderLabel];
+    [self updatePlaceholderTextView];
 }
 
 
 #pragma mark - Update
 
-- (void)updatePlaceholderLabel {
+- (void)updatePlaceholderTextView {
     if (self.text.length) {
-        [self.placeholderLabel removeFromSuperview];
+        [self.placeholderTextView removeFromSuperview];
     } else {
-        [self insertSubview:self.placeholderLabel atIndex:0];
+        [self insertSubview:self.placeholderTextView atIndex:0];
     }
 
     if (self.needsUpdateFont) {
-        self.placeholderLabel.font = self.font;
+        self.placeholderTextView.font = self.font;
         self.needsUpdateFont = NO;
     }
-    self.placeholderLabel.textAlignment = self.textAlignment;
+    self.placeholderTextView.textAlignment = self.textAlignment;
 
     // `NSTextContainer` is available since iOS 7
     CGFloat lineFragmentPadding;
@@ -199,11 +199,9 @@
         textContainerInset = UIEdgeInsetsMake(8, 0, 8, 0);
     }
 
-    CGFloat x = lineFragmentPadding + textContainerInset.left;
-    CGFloat y = textContainerInset.top;
-    CGFloat width = CGRectGetWidth(self.bounds) - x - lineFragmentPadding - textContainerInset.right;
-    CGFloat height = [self.placeholderLabel sizeThatFits:CGSizeMake(width, 0)].height;
-    self.placeholderLabel.frame = CGRectMake(x, y, width, height);
+    self.placeholderTextView.textContainer.exclusionPaths = self.textContainer.exclusionPaths;
+    self.placeholderTextView.textContainerInset = self.textContainerInset;
+    self.placeholderTextView.frame = self.bounds;
 }
 
 @end
