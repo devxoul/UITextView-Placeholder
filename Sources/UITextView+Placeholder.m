@@ -118,7 +118,7 @@
 }
 
 - (void)setPlaceholder:(NSString *)placeholder {
-    self.placeholderTextView.text = placeholder;
+    self.placeholderTextView.text = [NSString stringWithFormat:NSLocalizedString(placeholder, @"%@ placeholder"), placeholder];
     [self updatePlaceholderTextView];
 }
 
