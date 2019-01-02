@@ -74,6 +74,7 @@
              @"frame",
              @"text",
              @"textAlignment",
+             @"backgroundColor",
              @"textContainerInset",
              @"textContainer.exclusionPaths"];
 }
@@ -180,7 +181,7 @@
         self.needsUpdateFont = NO;
     }
     self.placeholderTextView.textAlignment = self.textAlignment;
-
+    self.placeholderTextView.backgroundColor = self.backgroundColor;
     // `NSTextContainer` is available since iOS 7
     CGFloat lineFragmentPadding;
     UIEdgeInsets textContainerInset;
