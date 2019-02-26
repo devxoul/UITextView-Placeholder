@@ -90,6 +90,7 @@
         self.attributedText = originalText;
 
         textView = [[UITextView alloc] init];
+        textView.backgroundColor = [UIColor clearColor];
         textView.textColor = [self.class defaultPlaceholderColor];
         textView.userInteractionEnabled = NO;
         objc_setAssociatedObject(self, @selector(placeholderTextView), textView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
