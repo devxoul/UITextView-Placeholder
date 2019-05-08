@@ -39,9 +39,9 @@ class Tests: XCTestCase {
 
   func testPlaceholderText() {
     self.textView.placeholder = "Hello"
-    XCTAssertEqual(self.textView.placeholderLabel.text, "Hello")
+    XCTAssertEqual(self.textView.placeholderTextView.text, "Hello")
     self.textView.placeholder = nil
-    XCTAssertEqual(self.textView.placeholderLabel.text, nil)
+    XCTAssertEqual(self.textView.placeholderTextView.text, nil)
   }
 
   func testAttributedPlaceholder() {
@@ -52,13 +52,13 @@ class Tests: XCTestCase {
 
   func testPlaceholderLabelHasSuperviewWhileNotEditing() {
     self.textView.placeholder = "Placeholder"
-    XCTAssertEqual(self.textView.placeholderLabel.superview, self.textView)
+    XCTAssertEqual(self.textView.placeholderTextView.superview, self.textView)
   }
 
   func testPlaceholderLabelHasNoSuperviewWhileEditing() {
     self.textView.text = "ABC"
     self.textView.placeholder = "Placeholder"
-    XCTAssertNil(self.textView.placeholderLabel.superview)
+    XCTAssertNil(self.textView.placeholderTextView.superview)
   }
 
 
@@ -67,15 +67,15 @@ class Tests: XCTestCase {
   func testSetFont_beforePlaceholder() {
     self.textView.font = UIFont.systemFont(ofSize: 34)
     self.textView.placeholder = "Hello"
-    XCTAssertEqual(self.textView.placeholderLabel.text, "Hello")
-    XCTAssertEqual(self.textView.placeholderLabel.font, UIFont.systemFont(ofSize: 34))
+    XCTAssertEqual(self.textView.placeholderTextView.text, "Hello")
+    XCTAssertEqual(self.textView.placeholderTextView.font, UIFont.systemFont(ofSize: 34))
   }
 
   func testSetFont_afterPlaceholder() {
     self.textView.placeholder = "Hello"
     self.textView.font = UIFont.systemFont(ofSize: 34)
-    XCTAssertEqual(self.textView.placeholderLabel.text, "Hello")
-    XCTAssertEqual(self.textView.placeholderLabel.font, UIFont.systemFont(ofSize: 34))
+    XCTAssertEqual(self.textView.placeholderTextView.text, "Hello")
+    XCTAssertEqual(self.textView.placeholderTextView.font, UIFont.systemFont(ofSize: 34))
   }
 
   func testSetFont_beforeAttributedPlaceholder() {
@@ -99,13 +99,13 @@ class Tests: XCTestCase {
     self.textView.font = UIFont.systemFont(ofSize: 32)
     self.textView.placeholder = "Placeholder text..."
     self.textView.text = "Hello, world!"
-    XCTAssertEqual(self.textView.placeholderLabel.font, UIFont.systemFont(ofSize: 32))
+    XCTAssertEqual(self.textView.placeholderTextView.font, UIFont.systemFont(ofSize: 32))
   }
 
   func testSetPlaceholderAfterText() {
     self.textView.font = UIFont.boldSystemFont(ofSize: 30)
     self.textView.text = "Hello, world!"
     self.textView.placeholder = "Placeholder text..."
-    XCTAssertEqual(self.textView.placeholderLabel.font, UIFont.boldSystemFont(ofSize: 30))
+    XCTAssertEqual(self.textView.placeholderTextView.font, UIFont.boldSystemFont(ofSize: 30))
   }
 }
