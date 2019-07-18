@@ -20,7 +20,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+#if __has_feature(modules)
 @import UIKit;
+#else
+#import <UIKit/UIKit.h>
+#endif
 
 FOUNDATION_EXPORT double UITextView_PlaceholderVersionNumber;
 FOUNDATION_EXPORT const unsigned char UITextView_PlaceholderVersionString[];
