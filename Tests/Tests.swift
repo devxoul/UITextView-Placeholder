@@ -41,7 +41,7 @@ class Tests: XCTestCase {
     self.textView.placeholder = "Hello"
     XCTAssertEqual(self.textView.placeholderTextView.text, "Hello")
     self.textView.placeholder = nil
-    XCTAssertEqual(self.textView.placeholderTextView.text, nil)
+    XCTAssertEqual(self.textView.placeholderTextView.text.count, 0)
   }
 
   func testAttributedPlaceholder() {
@@ -50,12 +50,12 @@ class Tests: XCTestCase {
     XCTAssertEqual(self.textView.attributedPlaceholder, attributedPlaceholder)
   }
 
-  func testPlaceholderLabelHasSuperviewWhileNotEditing() {
+  func testplaceholderTextViewHasSuperviewWhileNotEditing() {
     self.textView.placeholder = "Placeholder"
     XCTAssertEqual(self.textView.placeholderTextView.superview, self.textView)
   }
 
-  func testPlaceholderLabelHasNoSuperviewWhileEditing() {
+  func testplaceholderTextViewHasNoSuperviewWhileEditing() {
     self.textView.text = "ABC"
     self.textView.placeholder = "Placeholder"
     XCTAssertNil(self.textView.placeholderTextView.superview)

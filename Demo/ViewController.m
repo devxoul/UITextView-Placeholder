@@ -29,13 +29,13 @@
     [super viewDidLoad];
 
     UITextView *textView = [[UITextView alloc] init];
-    textView.frame = CGRectMake(50, 120, 200, 300);
+    textView.frame = CGRectMake(50, 120, 200, 200);
     textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    textView.placeholder = @"Are you sure you don\'t want to reconsider? Could you tell us why you wish to leave StyleShare? Your opinion helps us improve StyleShare into a better place for fashionistas from all around the world. We are always listening to our users. Help us improve!";
+//    textView.placeholder = @"Are you sure you don\'t want to reconsider? Could you tell us why you wish to leave StyleShare? Your opinion helps us improve StyleShare into a better place for fashionistas from all around the world. We are always listening to our users. Help us improve!";
     NSDictionary *attrs = @ {
         NSFontAttributeName: [UIFont boldSystemFontOfSize:20],
     };
-    textView.attributedText = [[NSAttributedString alloc] initWithString:@"Hi" attributes:attrs];
+    textView.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Hi" attributes:attrs];
     textView.font = [UIFont systemFontOfSize:15];
     textView.layer.borderColor = UIColor.redColor.CGColor;
     textView.layer.borderWidth = 1.0;

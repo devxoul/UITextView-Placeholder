@@ -180,26 +180,9 @@
         self.placeholderTextView.font = self.font;
         self.needsUpdateFont = NO;
     }
-    self.placeholderTextView.textAlignment = self.textAlignment;
-
-    // `NSTextContainer` is available since iOS 7
-    CGFloat lineFragmentPadding;
-    UIEdgeInsets textContainerInset;
-
-#pragma deploymate push "ignored-api-availability"
-    // iOS 7+
-    if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) {
-        lineFragmentPadding = self.textContainer.lineFragmentPadding;
-        textContainerInset = self.textContainerInset;
+    if (self.placeholderTextView.attributedText.length == 0) {
+      self.placeholderTextView.textAlignment = self.textAlignment;
     }
-#pragma deploymate pop
-
-    // iOS 6
-    else {
-        lineFragmentPadding = 5;
-        textContainerInset = UIEdgeInsetsMake(8, 0, 8, 0);
-    }
-
     self.placeholderTextView.textContainer.exclusionPaths = self.textContainer.exclusionPaths;
     self.placeholderTextView.textContainerInset = self.textContainerInset;
     self.placeholderTextView.frame = self.bounds;
