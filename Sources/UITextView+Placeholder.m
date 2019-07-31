@@ -54,6 +54,9 @@
 #pragma mark `defaultPlaceholderColor`
 
 + (UIColor *)defaultPlaceholderColor {
+    if (@available(iOS 13, *)) {
+      return [UIColor placeholderTextColor];
+    }
     static UIColor *color = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
