@@ -55,7 +55,10 @@
 
 + (UIColor *)defaultPlaceholderColor {
     if (@available(iOS 13, *)) {
-      return [UIColor placeholderTextColor];
+      SEL selector = NSSelectorFromString(@"placeholderTextColor");
+      if ([UIColor respondsToSelector:selector]) {
+        return [UIColor performSelector:selector];
+      }
     }
     static UIColor *color = nil;
     static dispatch_once_t onceToken;
