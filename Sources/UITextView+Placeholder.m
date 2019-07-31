@@ -54,12 +54,19 @@
 #pragma mark `defaultPlaceholderColor`
 
 + (UIColor *)defaultPlaceholderColor {
+    if (@available(iOS 13, *)) {
+      return [UIColor placeholderTextColor];
+    }
     static UIColor *color = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         UITextField *textField = [[UITextField alloc] init];
         textField.placeholder = @" ";
-        color = [textField valueForKeyPath:@"_placeholderLabel.textColor"];
+        NSDictionary *attributes = [textField.attributedPlaceholder attributesAtIndex:0 effectiveRange:nil];
+        color = attributes[NSForegroundColorAttributeName];
+        if (!color) {
+          color = [UIColor colorWithRed:0 green:0 blue:0.0980392 alpha:0.22];
+        }
     });
     return color;
 }
