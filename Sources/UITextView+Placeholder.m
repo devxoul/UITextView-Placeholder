@@ -85,6 +85,7 @@
              @"text",
              @"textAlignment",
              @"textContainerInset",
+             @"textContainer.lineFragmentPadding",
              @"textContainer.exclusionPaths"];
 }
 
@@ -195,6 +196,7 @@
     }
     self.placeholderTextView.textContainer.exclusionPaths = self.textContainer.exclusionPaths;
     self.placeholderTextView.textContainerInset = self.textContainerInset;
+    self.placeholderTextView.textContainer.lineFragmentPadding = self.textContainer.lineFragmentPadding;
     self.placeholderTextView.frame = self.bounds;
 }
 
