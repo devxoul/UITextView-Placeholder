@@ -184,8 +184,10 @@
 - (void)updatePlaceholderTextView {
     if (self.text.length) {
         [self.placeholderTextView removeFromSuperview];
+        self.accessibilityValue = self.text;
     } else {
         [self insertSubview:self.placeholderTextView atIndex:0];
+        self.accessibilityValue = self.placeholder;
     }
 
     if (self.needsUpdateFont) {
