@@ -14,7 +14,6 @@ let package = Package(
     targets: [
         .target(
             name: "UITextView+Placeholder",
-            path: "Sources",
-            publicHeadersPath: "Sources"),
+            path: "Sources"),
     ]
 )
