@@ -119,6 +119,8 @@
         for (NSString *key in self.class.observingKeys) {
             [self addObserver:self forKeyPath:key options:NSKeyValueObservingOptionNew context:nil];
         }
+
+		[self setupConstraintsIfNeedsBe];
     }
     return textView;
 }
@@ -166,6 +168,25 @@
 }
 
 
+#pragma mark - `constraints`
+
+- (void)setupConstraintsIfNeedsBe {
+	// If using autolayout, add a height constraint as a means to influnece our frame size when required.
+	// Alternatively, we'll just set the frame directly.
+	if (self.translatesAutoresizingMaskIntoConstraints == NO) {
+		NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:self
+																			attribute:NSLayoutAttributeHeight
+																			relatedBy:NSLayoutRelationGreaterThanOrEqual
+																			   toItem:nil
+																			attribute:NSLayoutAttributeNotAnAttribute
+																		   multiplier:1.0
+																			 constant:self.frame.size.height];
+		[self addConstraint:heightConstraint];
+		objc_setAssociatedObject(self, @selector(heightConstraint), heightConstraint, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+	}
+}
+
+
 #pragma mark - KVO
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -200,7 +221,28 @@
     self.placeholderTextView.textContainer.exclusionPaths = self.textContainer.exclusionPaths;
     self.placeholderTextView.textContainerInset = self.textContainerInset;
     self.placeholderTextView.textContainer.lineFragmentPadding = self.textContainer.lineFragmentPadding;
-    self.placeholderTextView.frame = self.bounds;
+
+	CGSize sizeToFit = CGSizeMake(self.frame.size.width - self.textContainerInset.left - self.textContainerInset.right, MAXFLOAT);
+	CGSize fittedSize = [self.placeholderTextView sizeThatFits: sizeToFit];
+
+	CGRect placeholderFrame = CGRectMake(self.bounds.origin.x,
+										 self.bounds.origin.y,
+										 self.frame.size.width,
+										 MAX(self.frame.size.height, fittedSize.height));
+	self.placeholderTextView.frame = placeholderFrame;
+
+	// Grow the `UITextView` if the placeholder is larger than the current size.
+	if (placeholderFrame.size.height > self.frame.size.height) {
+		CGRect newFrame = self.frame;
+		newFrame.size.height = placeholderFrame.size.height;
+
+		NSLayoutConstraint *heightConstraint = objc_getAssociatedObject(self, @selector(heightConstraint));
+		if( heightConstraint ) {
+			heightConstraint.constant = newFrame.size.height;
+		} else {
+			self.frame = newFrame;
+		}
+	}
 }
 
 @end
