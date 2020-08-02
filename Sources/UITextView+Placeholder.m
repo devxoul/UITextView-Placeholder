@@ -221,9 +221,8 @@
     self.placeholderTextView.textContainer.exclusionPaths = self.textContainer.exclusionPaths;
     self.placeholderTextView.textContainerInset = self.textContainerInset;
     self.placeholderTextView.textContainer.lineFragmentPadding = self.textContainer.lineFragmentPadding;
-    self.placeholderTextView.frame = self.bounds;
 
-	CGSize sizeToFit = CGSizeMake(self.frame.size.width, MAXFLOAT);
+	CGSize sizeToFit = CGSizeMake(self.frame.size.width - self.textContainerInset.left - self.textContainerInset.right, MAXFLOAT);
 	CGSize fittedSize = [self.placeholderTextView sizeThatFits: sizeToFit];
 
 	CGRect placeholderFrame = CGRectMake(self.bounds.origin.x,
