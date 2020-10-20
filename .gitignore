@@ -7,5 +7,7 @@ build
 *.pbxuser
 *.mode1v3
 
+.swiftpm/*
+
 Podfile.lock
 Pods
