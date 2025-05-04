@@ -185,9 +185,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		0309F8AC1CBCC7FF00062D3B /* UITextView+Placeholder */ = {
+		0309F8AC1CBCC7FF00062D3B /* UITextView_Placeholder */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0309F8B51CBCC7FF00062D3B /* Build configuration list for PBXNativeTarget "UITextView+Placeholder" */;
+			buildConfigurationList = 0309F8B51CBCC7FF00062D3B /* Build configuration list for PBXNativeTarget "UITextView_Placeholder" */;
 			buildPhases = (
 				0309F8A81CBCC7FF00062D3B /* Sources */,
 				0309F8A91CBCC7FF00062D3B /* Frameworks */,
@@ -198,7 +198,7 @@
 			);
 			dependencies = (
 			);
-			name = "UITextView+Placeholder";
+			name = UITextView_Placeholder;
 			productName = "UITextView+Placeholder";
 			productReference = 0309F8AD1CBCC7FF00062D3B /* UITextView_Placeholder.framework */;
 			productType = "com.apple.product-type.framework";
@@ -261,7 +261,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0309F8A71CBCC7FF00062D3B /* Build configuration list for PBXProject "UITextView+Placeholder" */;
+			buildConfigurationList = 0309F8A71CBCC7FF00062D3B /* Build configuration list for PBXProject "UITextView_Placeholder" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -274,7 +274,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0309F8AC1CBCC7FF00062D3B /* UITextView+Placeholder */,
+				0309F8AC1CBCC7FF00062D3B /* UITextView_Placeholder */,
 				0309F8C51CBCC8A700062D3B /* Demo */,
 				0309F8F41CBCCD6500062D3B /* Tests */,
 			);
@@ -341,12 +341,12 @@
 /* Begin PBXTargetDependency section */
 		0309F8E01CBCC91300062D3B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0309F8AC1CBCC7FF00062D3B /* UITextView+Placeholder */;
+			target = 0309F8AC1CBCC7FF00062D3B /* UITextView_Placeholder */;
 			targetProxy = 0309F8DF1CBCC91300062D3B /* PBXContainerItemProxy */;
 		};
 		0309F8FC1CBCCD6500062D3B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0309F8AC1CBCC7FF00062D3B /* UITextView+Placeholder */;
+			target = 0309F8AC1CBCC7FF00062D3B /* UITextView_Placeholder */;
 			targetProxy = 0309F8FB1CBCCD6500062D3B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -576,7 +576,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0309F8A71CBCC7FF00062D3B /* Build configuration list for PBXProject "UITextView+Placeholder" */ = {
+		0309F8A71CBCC7FF00062D3B /* Build configuration list for PBXProject "UITextView_Placeholder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0309F8B31CBCC7FF00062D3B /* Debug */,
@@ -585,7 +585,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0309F8B51CBCC7FF00062D3B /* Build configuration list for PBXNativeTarget "UITextView+Placeholder" */ = {
+		0309F8B51CBCC7FF00062D3B /* Build configuration list for PBXNativeTarget "UITextView_Placeholder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0309F8B61CBCC7FF00062D3B /* Debug */,
