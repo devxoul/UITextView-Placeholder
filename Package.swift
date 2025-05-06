@@ -14,7 +14,9 @@ let package = Package(
     targets: [
         .target(
             name: "UITextView_Placeholder",
-            path: "Sources",
-            publicHeadersPath: "Sources"),
+            path: "Sources/**",
+            publicHeadersPath: "Sources/**/*.h",
+            exclude: ["Supporting Files"]
+        ),
     ]
 )
