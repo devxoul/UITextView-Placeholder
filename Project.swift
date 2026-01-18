@@ -43,8 +43,7 @@ let project = Project(
             ],
             dependencies: [
                 .target(name: "UITextView_Placeholder"),
-            ],
-
+            ]
         ),
 
         // MARK: - Tests
