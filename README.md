@@ -57,6 +57,29 @@ Then create `UITextView` and set `placeholder`.
 Congratulations! You're done. 🎉
 
 
+Development
+-----------
+
+This project uses [Tuist](https://tuist.io) for project generation.
+
+```bash
+# Install Tuist (if not already installed)
+curl -Ls https://install.tuist.io | bash
+
+# Generate Xcode project
+tuist generate
+
+# Build
+tuist build Demo
+
+# Run tests
+tuist test
+
+# Run the demo app
+tuist run Demo
+```
+
+
 License
 -------
 
