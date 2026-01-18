@@ -1,0 +1,5 @@
+module UITextView_Placeholder {
+    header "UITextView+Placeholder.h"
+
+    export *
+}
