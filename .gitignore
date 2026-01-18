@@ -10,3 +10,9 @@ build
 
 Podfile.lock
 Pods
+
+# Tuist managed
+Derived/
+*.xcodeproj
+*.xcworkspace
+.tuist-generated
