@@ -10,7 +10,7 @@ let project = Project(
             product: .framework,
             bundleId: "kr.xoul.UITextView-Placeholder",
             deploymentTargets: .iOS("12.0"),
-            infoPlist: .file(path: "Supporting Files/Info.plist"),
+            infoPlist: .default,
             sources: ["Sources/**"],
             headers: .headers(
                 public: ["Sources/UITextView+Placeholder.h"]
@@ -32,7 +32,10 @@ let project = Project(
             product: .app,
             bundleId: "kr.xoul.Demo",
             deploymentTargets: .iOS("12.0"),
-            infoPlist: .file(path: "Demo/Info.plist"),
+            infoPlist: .extendingDefault(with: [
+                "UIMainStoryboardFile": "Main",
+                "UILaunchStoryboardName": "LaunchScreen",
+            ]),
             sources: ["Demo/**"],
             resources: [
                 "Demo/Base.lproj/**",
@@ -51,7 +54,7 @@ let project = Project(
             product: .unitTests,
             bundleId: "kr.xoul.Tests",
             deploymentTargets: .iOS("12.0"),
-            infoPlist: .file(path: "Supporting Files/Info.plist"),
+            infoPlist: .default,
             sources: ["Tests/**"],
             dependencies: [
                 .target(name: "UITextView_Placeholder"),
