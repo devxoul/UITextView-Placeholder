@@ -108,4 +108,30 @@ class Tests: XCTestCase {
     self.textView.placeholder = "Placeholder text..."
     XCTAssertEqual(self.textView.placeholderTextView.font, UIFont.boldSystemFont(ofSize: 30))
   }
+
+
+  // MARK: Multi-line Placeholder
+
+  /// https://github.com/devxoul/UITextView-Placeholder/issues/47
+  func testMultilinePlaceholder_shouldNotBeCutOff() {
+    // Given: A text view with a small fixed height
+    let smallHeight: CGFloat = 40
+    self.textView.frame = CGRect(x: 0, y: 0, width: 200, height: smallHeight)
+
+    // And: A long multi-line placeholder that needs more vertical space
+    let longPlaceholder = "This is a very long placeholder text that spans multiple lines and should require more vertical space than the text view provides."
+    self.textView.placeholder = longPlaceholder
+
+    // When: We calculate how much space the placeholder needs
+    let fittingSize = self.textView.placeholderTextView.sizeThatFits(
+      CGSize(width: self.textView.frame.width, height: .greatestFiniteMagnitude)
+    )
+
+    // Then: The placeholder frame should be tall enough to display all content
+    XCTAssertGreaterThanOrEqual(
+      self.textView.placeholderTextView.frame.height,
+      fittingSize.height,
+      "Placeholder frame should be tall enough to display multi-line content without cut-off"
+    )
+  }
 }
