@@ -26,7 +26,7 @@ let package = Package(
         .target(
             name: "SPMIntegrationTest",
             dependencies: [
-                .product(name: "UITextView+Placeholder", package: "UITextView-Placeholder")
+                .product(name: "UITextView-Placeholder", package: "UITextView-Placeholder")
             ]
         )
     ]

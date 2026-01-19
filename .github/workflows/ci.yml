@@ -20,3 +20,6 @@ jobs:
 
       - name: Test SPM Integration
         run: ./Scripts/test-spm-integration.sh
+
+      - name: Test Tuist+SPM Integration
+        run: ./Scripts/test-tuist-spm-integration.sh
