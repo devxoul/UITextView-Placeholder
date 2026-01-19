@@ -1,20 +1,19 @@
-// swift-tools-version:5.1
-// The swift-tools-version declares the minimum version of Swift required to build this package.
+// swift-tools-version:6.0
 
 import PackageDescription
 
 let package = Package(
     name: "UITextView+Placeholder",
+    platforms: [.iOS(.v12)],
     products: [
         .library(
             name: "UITextView+Placeholder",
             targets: ["UITextView+Placeholder"]),
     ],
-    dependencies: [],
     targets: [
         .target(
             name: "UITextView+Placeholder",
             path: "Sources",
-            publicHeadersPath: "Sources"),
+            publicHeadersPath: "."),
     ]
 )
