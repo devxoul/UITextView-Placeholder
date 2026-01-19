@@ -17,3 +17,6 @@ jobs:
 
       - name: Run Tests
         run: tuist test
+
+      - name: Test SPM Integration
+        run: ./Scripts/test-spm-integration.sh
