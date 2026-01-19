@@ -17,7 +17,7 @@ Add the following to your `Package.swift` file:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/devxoul/UITextView-Placeholder.git", from: "1.4.0")
+    .package(url: "https://github.com/devxoul/UITextView-Placeholder.git", from: "1.5.0")
 ]
 ```
 
