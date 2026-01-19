@@ -6,6 +6,7 @@ UITextView+Placeholder
 
 A missing placeholder for UITextView.
 
+> **Note**: CocoaPods support has been removed. Please use Swift Package Manager for installation.
 
 Installation
 ------------
