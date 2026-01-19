@@ -2,7 +2,7 @@ UITextView+Placeholder
 ======================
 
 [![CI](https://github.com/devxoul/UITextView-Placeholder/actions/workflows/ci.yml/badge.svg)](https://github.com/devxoul/UITextView-Placeholder/actions/workflows/ci.yml)
-[![CocoaPods](http://img.shields.io/cocoapods/v/UITextView+Placeholder.svg?style=flat)](http://cocoapods.org/?q=name%3AUITextView%2BPlaceholder)
+[![Swift Package Manager](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://swift.org/package-manager/)
 
 A missing placeholder for UITextView.
 
@@ -10,44 +10,43 @@ A missing placeholder for UITextView.
 Installation
 ------------
 
-Use [CocoaPods](http://cocoapods.org).
+### Swift Package Manager
 
-```ruby
-pod 'UITextView+Placeholder'
+Add the following to your `Package.swift` file:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/devxoul/UITextView-Placeholder.git", from: "1.4.0")
+]
 ```
+
+Or add it through Xcode:
+1. File → Add Package Dependencies...
+2. Enter `https://github.com/devxoul/UITextView-Placeholder.git`
+3. Select the version and add to your target
 
 
 Usage
 -----
 
-- **Import Dynamic Framework**:
+Import the module and set `placeholder` on your `UITextView`.
 
-    e.g. If you're using CocoaPods with `use_frameworks!` flag.
+- **Objective-C**:
 
     ```objc
     @import UITextView_Placeholder;
-    ```
     
-- **Import Static Library**:
-
-    ```objc
-    #import <UITextView+Placeholder/UITextView+Placeholder.h>
-    ```
-
-Then create `UITextView` and set `placeholder`.
-
-- **Implement Objective-C**:
-
-    ```objc
     UITextView *textView = [[UITextView alloc] init];
     textView.placeholder = @"How are you?";
     textView.placeholderColor = [UIColor lightGrayColor]; // optional
     textView.attributedPlaceholder = ... // NSAttributedString (optional)
     ```
 
-- **Implement Swift**:
+- **Swift**:
 
     ```swift
+    import UITextView_Placeholder
+    
     let textView = UITextView()
     textView.placeholder = "How are you?"
     textView.placeholderColor = UIColor.lightGray // optional
